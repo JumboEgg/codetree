@@ -69,8 +69,12 @@ public class Main {
 
         int val = nameDb.get(name);
         nameDb.remove(name);
+
+        List<Integer> vals = new ArrayList<>(valueDb.keySet());
+        Collections.sort(vals);
+
         valueDb.remove(val);
-        return 1;
+        return vals.indexOf(val);
     }
 
     static String rank(String k) {
