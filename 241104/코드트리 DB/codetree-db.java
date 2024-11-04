@@ -69,12 +69,8 @@ public class Main {
 
         int val = nameDb.get(name);
         nameDb.remove(name);
-
-        List<Integer> vals = new ArrayList<>(valueDb.keySet());
-        Collections.sort(vals);
-
         valueDb.remove(val);
-        return vals.indexOf(val);
+        return val;
     }
 
     static String rank(String k) {
@@ -95,9 +91,8 @@ public class Main {
 
         int index = 0;
         long total = 0;
-        while(values[index] <= r) {
+        while(index < values.length && values[index] <= r) {
             total += values[index++];
-            if(index >= values.length) break;
         }
 
         return total;
