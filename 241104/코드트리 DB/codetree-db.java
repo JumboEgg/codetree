@@ -54,9 +54,10 @@ public class Main {
 
     static int insert(String name, String value) {
         if(nameDb.containsKey(name)) return 0;
-        if(valueDb.containsKey(value)) return 0;
 
         int val = Integer.parseInt(value);
+        if(valueDb.containsKey(val)) return 0;
+
         nameDb.put(name, val);
         valueDb.put(val, name);
 
@@ -92,6 +93,7 @@ public class Main {
         long total = 0;
         while(values[index] <= r) {
             total += values[index++];
+            if(index >= values.length) break;
         }
 
         return total;
