@@ -77,8 +77,8 @@ public class Main {
         int val = nameDb.get(name);
         nameDb.remove(name);
         valueDb.remove(val);
-        sortedValue.remove(val);
-        
+        sortedValue.remove(sortedValue.indexOf(val));
+
         return val;
     }
 
