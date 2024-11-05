@@ -103,15 +103,37 @@ public class Main {
     static long sum(String k) {
         int r = Integer.parseInt(k);
 
-        Integer[] values = valueDb.keySet().toArray(new Integer[0]);
-        Arrays.sort(values);
+        if(!isSorted) {
+            sortedValue = new ArrayList<>(valueDb.keySet());
+            Collections.sort(sortedValue);
 
-        int index = 0;
-        long total = 0;
-        while(index < values.length && values[index] <= r) {
-            total += values[index++];
+            isSorted = true;
         }
 
+        long total = getSum(0, sortedValue.size(), r);
+
         return total;
+    }
+
+    static long getSum(int start, int end, int k) {
+        if(start >= end) return 0;
+        else if(sortedValue.get(0) > k) return 0;
+        else if(sortedValue.get(end - 1) <= k) {
+            return getTotalSum(start, end);
+        } else {
+            int mid = (start + end + 1) / 2;
+            if(sortedValue.get(mid) > k) {
+                return getSum(start, mid, k);
+            }
+            return getSum(start, mid, k) + getSum(mid, end, k);
+        }
+    }
+
+    static long getTotalSum(int start, int end) {
+        if(start >= end) return 0;
+        if(start == end - 1) return sortedValue.get(start);
+        
+        int mid = (start + end) / 2;
+        return getTotalSum(start, mid) + getTotalSum(mid, end);
     }
 }
