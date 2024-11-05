@@ -55,6 +55,7 @@ public class Main {
     static void init() {
         nameDb.clear();
         valueDb.clear();
+        sortedValue.clear();
     }
 
     static int insert(String name, String value) {
